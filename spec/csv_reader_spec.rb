@@ -22,31 +22,31 @@ describe Object do
     it "responds to .first" do
       (People).should respond_to(:first)
     end
-    it "responds to .first" do  
+    it ".first returns correctly" do  
       expect(People.first).to eq @person1
     end
     it "responds to .last" do
       (People).should respond_to(:last)
     end
-    it "responds to .last" do
+    it ".last returns correctly" do
       expect(People.last).to eq @person3
     end
     it "responds to .find" do
       (People).should respond_to(:find)
     end
-    it "responds to .find" do
+    it ".find returns correctly" do
       expect(People.find(3)).to eq @person2
     end
     it "responds to .find_by" do
       (People).should respond_to(:find_by)
     end
-    it "responds to .find_by" do
+    it ".find_by returns correctly" do
       (People).should respond_to(:find_by)
     end
     it "responds to .find_all_by" do
       (People).should respond_to(:find_all_by)
     end
-    it "responds to .find_all_by" do
+    it ".find_all_by returns correctly" do
       (People).should respond_to(:find_all_by)
     end
   end

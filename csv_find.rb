@@ -22,12 +22,12 @@ module CsvClassMaker::CsvFind
   end
 
   def find(line_number)
-    if ((first_line..(last_line/2).floor)).include? line_number
+    if (first_line..last_line).include? line_number
       row = CSV.new(`head -n 1 #{file.path} && head -n #{line_number} #{file.path} | tail -n 1`, headers: true, header_converters: :symbol, return_headers: false).first
       build_instance row, line_number
-    elsif (((last_line/2).ceil)..last_line).include? line_number
-      row = CSV.new(`head -n 1 #{file.path} && tail -n #{last_line - line_number + 1} #{file.path} | head -n 1`, headers: true, header_converters: :symbol, return_headers: false).first
-      build_instance row, line_number
+    # elsif ((last_line/2)..last_line).include? line_number
+      # row = CSV.new(`head -n 1 #{file.path} && tail -n #{last_line+2 - line_number} #{file.path} | head -n 1`, headers: true, header_converters: :symbol, return_headers: false).first
+      # build_instance row, line_number
     else
       nil
     end
