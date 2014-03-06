@@ -15,7 +15,8 @@ describe Object do
   before(:all){
     @person1 = People.new(first: 'Mark', last: 'Platt', nickname: 'JCool')
     @person2 = People.new(first: 'Longinus', last: 'Smith', nickname: 'Pebbles')
-    @person3 = People.new(first: 'Charlie', last: 'Mansfield', nickname: 'Sammykins')
+    @person3 = People.new(first: 'Johnny', last: 'Radiation', nickname: 'Pebbles')
+    @person4 = People.new(first: 'Charlie', last: 'Mansfield', nickname: 'Sammykins')
   }
 
   context 'class methods' do
@@ -29,7 +30,7 @@ describe Object do
       (People).should respond_to(:last)
     end
     it ".last returns correctly" do
-      expect(People.last).to eq @person3
+      expect(People.last).to eq @person4
     end
     it "responds to .find" do
       (People).should respond_to(:find)
@@ -41,13 +42,15 @@ describe Object do
       (People).should respond_to(:find_by)
     end
     it ".find_by returns correctly" do
-      (People).should respond_to(:find_by)
+      expect(People.find_by(nickname: 'Pebbles')).to eq @person3
+      expect(People.find_by(nickname: 'Pebbles', last: 'Smith')).to eq @person2 
     end
     it "responds to .find_all_by" do
       (People).should respond_to(:find_all_by)
     end
     it ".find_all_by returns correctly" do
-      (People).should respond_to(:find_all_by)
+      expect(People.find_all_by(nickname: 'Pebbles')).to eq [@person2, @person3]
+      expect(People.find_all_by(nickname: 'Pebbles', last: 'Radiation')).to eq [@person3]
     end
   end
   context 'instance methods' do
