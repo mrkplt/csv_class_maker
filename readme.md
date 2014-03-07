@@ -31,6 +31,11 @@ Yourclass.first
 Yourclass.last
 ```
 
+To Do
+---------------
+1) Speed up find again.
+2) Pass a block into the generate method to allow appending more functionality to the class creation.
+
 License
 -------
 CSV Class Maker is Copyright © 2014 Mark Platt, Inc. It is free software, and may be redistributed under the terms specified in the MIT-LICENSE file.
