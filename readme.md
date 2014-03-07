@@ -1,4 +1,4 @@
-CV Reader
+CSV Reader
 ========
 
 CSV Reader creates classes out of your CSV headers with some pretty simple search functionality you're probably already comfortable with.
