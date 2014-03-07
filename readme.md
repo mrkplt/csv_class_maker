@@ -17,6 +17,8 @@ CsvClassMaker::generate_class 'Yourclass', '/path/to/your.csv'
 
 Now you have a class with setters and getters based on the headers of the csv file.
 
+All methods return an instance of Yourclass or an array of Yourclass.
+
 Methods
 ```
 Yourclass.new()
@@ -26,7 +28,6 @@ Yourclass.find_all_by(header1: 'value', header2: 'value')
 Yourclass.first
 Yourclass.last
 ```
-
 
 License
 -------
