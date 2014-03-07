@@ -1,14 +1,14 @@
-CSV Reader
+CSV Class Maker
 ========
 
-CSV Reader creates classes out of your CSV headers with some pretty simple search functionality you're probably already comfortable with.
+CSV Class Maker creates classes out of your CSV headers with some pretty simple search functionality you're probably already comfortable with.
 
 Usage
 --------------
 
 Install
 ```
-gem install csv_reader
+gem install csv_class_maker
 ```
 Generate a class to represent the data in your CSV.
 ```
@@ -31,4 +31,4 @@ Yourclass.last
 
 License
 -------
-CSV Reader is Copyright © 2014 Mark Platt, Inc. It is free software, and may be redistributed under the terms specified in the MIT-LICENSE file.
+CSV Class Maker is Copyright © 2014 Mark Platt, Inc. It is free software, and may be redistributed under the terms specified in the MIT-LICENSE file.
