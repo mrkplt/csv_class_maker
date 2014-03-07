@@ -1,4 +1,4 @@
-require './lib/csv_reader'
+require './lib/csv_class_maker'
 
 describe CsvClassMaker do
   context 'class methods' do
