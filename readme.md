@@ -1,6 +1,8 @@
 CSV Class Maker
 ========
 
+[![Code Climate](https://codeclimate.com/github/mrkplt/csv_class_maker.png)](https://codeclimate.com/github/mrkplt/csv_class_maker)
+
 CSV Class Maker creates classes out of your CSV headers with some pretty simple search functionality you're probably already comfortable with.
 
 Usage
