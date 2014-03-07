@@ -1,10 +1,10 @@
-require './csv_class_maker'
+require './lib/csv_reader/csv_class_maker'
 
 describe CsvClassMaker do
   context 'class methods' do
     describe 'generate_class' do
       it 'makes a new class object from a file' do
-        CsvClassMaker::generate_class 'People', 'spec/demo.csv'
+        CsvClassMaker::generate_class 'People', 'spec/support/demo.csv'
         Object.constants.include? :People
       end
     end

@@ -9,7 +9,7 @@ module CsvClassMaker
     Object.const_set class_name, Struct.new(*extract_headers(file_name)){
       
       # Class definition for dynamically generated classes.
-      require './csv_find'
+      require './lib/csv_reader/csv_find'
       extend CsvFind
 
       def initialize(hash=nil)
