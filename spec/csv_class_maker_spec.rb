@@ -23,7 +23,7 @@ describe Object do
     it "responds to .first" do
       (People).should respond_to(:first)
     end
-    it ".first returns correctly" do  
+    it ".first returns correctly" do
       expect(People.first).to eq @person1
     end
     it "responds to .last" do
@@ -43,7 +43,7 @@ describe Object do
     end
     it ".find_by returns correctly" do
       expect(People.find_by(nickname: 'Pebbles')).to eq @person3
-      expect(People.find_by(nickname: 'Pebbles', last: 'Smith')).to eq @person2 
+      expect(People.find_by(nickname: 'Pebbles', last: 'Smith')).to eq @person2
     end
     it "responds to .find_all_by" do
       (People).should respond_to(:find_all_by)
@@ -51,6 +51,14 @@ describe Object do
     it ".find_all_by returns correctly" do
       expect(People.find_all_by(nickname: 'Pebbles')).to eq [@person2, @person3]
       expect(People.find_all_by(nickname: 'Pebbles', last: 'Radiation')).to eq [@person3]
+    end
+    it "responds to .each" do
+      (People).should respond_to(:each)
+    end
+    it ".each line yields" do
+      @output = []
+      People.each{|person| @output << person.first}
+      expect(@output).to eq ['Mark', 'Longinus', 'Johnny', 'Charlie']
     end
   end
   context 'instance methods' do

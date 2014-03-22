@@ -43,6 +43,13 @@ module CsvClassMaker::CsvFind
     build_instance last_row, last_line
   end
 
+  def each
+    rewind
+    (first_line..last_line).each do |line_number|
+      yield find line_number
+    end
+  end
+
   private
 
   def build_instance(row, line)
