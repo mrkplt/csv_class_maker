@@ -23,14 +23,13 @@ module CsvClassMaker::CsvFind
 
   def find(line_number)
     if (first_line..last_line).include? line_number
-      row = CSV.new(`head -n 1 #{file.path} && head -n #{line_number} #{file.path} | tail -n 1`, headers: true, header_converters: :symbol, return_headers: false).first
-      build_instance row, line_number
+      row = front_find(line_number, file.path)
     elsif ((last_line/2+1)..last_line).include? line_number
-      row = CSV.new(`head -n 1 #{file.path} && tail -n #{last_line - line_number} #{file.path} | head -n 1`, headers: true, header_converters: :symbol, return_headers: false).first
-      build_instance row, line_number
+      row = back_find(line_number, file.path)
     else
-      nil
+      row = nil
     end
+    row.nil? ? nil : build_instance(row, line_number)
   end
 
   def first
@@ -91,6 +90,13 @@ module CsvClassMaker::CsvFind
     }
 
     @accumulator
+  end
+
+  def front_find(line_number, file_path)
+    CSV.new(`head -n 1 #{file_path} && head -n #{line_number} #{file_path} | tail -n 1`, headers: true, header_converters: :symbol, return_headers: false).first
+  end
+  def back_find(line_number, file_path)
+    CSV.new(`head -n 1 #{file_path} && tail -n #{last_line - line_number} #{file_path} | head -n 1`, headers: true, header_converters: :symbol, return_headers: false).first
   end
 
 end
