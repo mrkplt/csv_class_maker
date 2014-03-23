@@ -21,24 +21,26 @@ module CsvClassMaker
       @@file = CSV.new(File.open(file_name,'r'), headers: true, header_converters: :symbol, return_headers: false)
       @@first_line = 2
       @@last_line = `wc -l #{file_name}`.split(' ').first.to_i
+      @@middle_line = (@@last_line/2)+1
       @line_number = nil
 
       attr_accessor :line_number
 
       def self.file; return @@file; end
       def self.first_line; return @@first_line; end
+      def self.middle_line; return @@middle_line; end
       def self.last_line; return @@last_line; end
 
       # End of class definition.
 
     }
   end
-  
+
   private
 
   def self.extract_headers(file_name)
     @csv_headers = []
-    CSV.new(File.open(file_name,'r'), headers: true, header_converters: :symbol, return_headers: true).first.each do |headers, values| 
+    CSV.new(File.open(file_name,'r'), headers: true, header_converters: :symbol, return_headers: true).first.each do |headers, values|
       @csv_headers << headers
     end
     @csv_headers

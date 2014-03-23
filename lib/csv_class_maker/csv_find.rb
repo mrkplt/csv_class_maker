@@ -24,7 +24,7 @@ module CsvClassMaker::CsvFind
   def find(line_number)
     if (first_line..last_line).include? line_number
       row = front_find(line_number, file.path)
-    elsif ((last_line/2+1)..last_line).include? line_number
+    elsif (middle_line..last_line).include? line_number
       row = back_find(line_number, file.path)
     else
       row = nil
