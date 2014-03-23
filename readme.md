@@ -29,12 +29,12 @@ Yourclass.find_by(header1: 'value', header2: 'value')
 Yourclass.find_all_by(header1: 'value', header2: 'value')
 Yourclass.first
 Yourclass.last
+Yourclass.each {|a| a.method  }
 ```
 
 To Do
 ---------------
-1) Speed up find again.
-2) Pass a block into the generate method to allow appending more functionality to the class creation.
+1) Pass a block into the generate method to allow appending more functionality to the class creation.
 
 License
 -------
