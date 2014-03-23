@@ -38,7 +38,8 @@ module CsvClassMaker::CsvFind
   end
 
   def last
-    last_row = CSV.new(`head -n 1 #{file.path} && tail -n 1 #{file.path}`, headers: true, header_converters: :symbol, return_headers: false).first
+    command = `head -n 1 #{file.path} && tail -n 1 #{file.path}`
+    last_row = CSV.new(command, file_options).first
     build_instance last_row, last_line
   end
 
@@ -93,10 +94,12 @@ module CsvClassMaker::CsvFind
   end
 
   def front_find(line_number, file_path)
-    CSV.new(`head -n 1 #{file_path} && head -n #{line_number} #{file_path} | tail -n 1`, headers: true, header_converters: :symbol, return_headers: false).first
+    command = `head -n 1 #{file_path} && head -n #{line_number} #{file_path} | tail -n 1`
+    CSV.new(command, file_options).first
   end
   def back_find(line_number, file_path)
-    CSV.new(`head -n 1 #{file_path} && tail -n #{last_line - line_number} #{file_path} | head -n 1`, headers: true, header_converters: :symbol, return_headers: false).first
+    command = `head -n 1 #{file_path} && tail -n #{last_line - line_number} #{file_path} | head -n 1`
+    CSV.new(command, file_options).first
   end
 
 end

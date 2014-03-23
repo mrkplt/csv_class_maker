@@ -18,7 +18,12 @@ module CsvClassMaker
         end
       end
 
-      @@file = CSV.new(File.open(file_name,'r'), headers: true, header_converters: :symbol, return_headers: false)
+      @@file_options = {
+        headers: true,
+        header_converters: :symbol,
+        return_headers: false,
+      }
+      @@file = CSV.new(File.open(file_name,'r'), @@file_options)
       @@first_line = 2
       @@last_line = `wc -l #{file_name}`.split(' ').first.to_i
       @@middle_line = (@@last_line/2)+1
@@ -30,6 +35,7 @@ module CsvClassMaker
       def self.first_line; return @@first_line; end
       def self.middle_line; return @@middle_line; end
       def self.last_line; return @@last_line; end
+      def self.file_options; return @@file_options; end
 
       # End of class definition.
 
@@ -40,7 +46,14 @@ module CsvClassMaker
 
   def self.extract_headers(file_name)
     @csv_headers = []
-    CSV.new(File.open(file_name,'r'), headers: true, header_converters: :symbol, return_headers: true).first.each do |headers, values|
+    file_options = {
+      headers: true,
+      header_converters: :symbol,
+      return_headers: true,
+    }
+    csv_file = File.open(file_name,'r')
+
+    CSV.new(csv_file, file_options).first.each do |headers, values|
       @csv_headers << headers
     end
     @csv_headers
