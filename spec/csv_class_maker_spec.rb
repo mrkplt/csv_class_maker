@@ -7,6 +7,11 @@ describe CsvClassMaker do
         CsvClassMaker::generate_class 'People', 'spec/support/demo.csv'
         Object.constants.include? :People
       end
+
+      it 'takes a file options' do
+        people = CsvClassMaker::generate_class 'Other', 'spec/support/delimeter.csv', col_sep: "\t"
+        people.first.should respond_to(:nickname)
+      end
     end
   end
 end
