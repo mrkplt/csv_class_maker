@@ -14,7 +14,12 @@ gem install csv_class_maker
 ```
 Generate a class to represent the data in your CSV.
 ```
-CsvClassMaker::generate_class 'Yourclass', '/path/to/your.csv'
+CsvClassMaker::generate_class('Yourclass', '/path/to/your.csv')
+```
+
+You can pass in other delimiters, like a tab.
+```
+CsvClassMaker::generate_class('Yourclass', '/path/to/your.csv', col_sep: "\t")
 ```
 
 Now you have a class with setters and getters based on the headers of the csv file.

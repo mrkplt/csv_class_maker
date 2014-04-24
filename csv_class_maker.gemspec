@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = %q{csv_class_maker}
-  s.version = '0.2.1'
+  s.version = '0.3.0'
   s.date = %q{2014-03-06}
   s.authors = ['Mark Platt']
   s.email = 'mplatt@mrkplt.com'
