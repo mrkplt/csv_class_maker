@@ -5,8 +5,15 @@
 
 module CsvClassMaker
   require 'csv'
-  def self.generate_class(class_name, file_name)
-    Object.const_set class_name, Struct.new(*extract_headers(file_name)){
+
+  def self.generate_class(class_name, file_name, options = {})
+    options.merge!(
+      headers: true,
+      header_converters: :symbol,
+      return_headers: false
+    )
+
+    Object.const_set class_name, Struct.new(*extract_headers(file_name, options)) {
 
       # Class definition for dynamically generated classes.
       require 'csv_class_maker/csv_find'
@@ -18,12 +25,8 @@ module CsvClassMaker
         end
       end
 
-      @@file_options = {
-        headers: true,
-        header_converters: :symbol,
-        return_headers: false,
-      }
-      @@file = CSV.new(File.open(file_name,'r'), @@file_options)
+      @@file_options = options
+      @@file = CSV.new(File.open(file_name, 'r'), @@file_options)
       @@first_line = 2
       @@last_line = `wc -l #{file_name}`.split(' ').first.to_i
       @@middle_line = (@@last_line/2)+1
@@ -44,16 +47,11 @@ module CsvClassMaker
 
   private
 
-  def self.extract_headers(file_name)
+  def self.extract_headers(file_name, options)
     @csv_headers = []
-    file_options = {
-      headers: true,
-      header_converters: :symbol,
-      return_headers: true,
-    }
     csv_file = File.open(file_name,'r')
 
-    CSV.new(csv_file, file_options).first.each do |headers, values|
+    CSV.new(csv_file, options).first.each do |headers, values|
       @csv_headers << headers
     end
     @csv_headers
