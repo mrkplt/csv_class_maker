@@ -5,7 +5,6 @@
 
 module CsvClassMaker
   require 'csv'
-  require 'byebug'
 
   def self.generate_class(class_name, file_name, options = {})
     options.merge!(

@@ -1,5 +1,4 @@
 module CsvClassMaker::CsvFind
-
   def all
     rewind
     object_array = []
@@ -83,5 +82,4 @@ module CsvClassMaker::CsvFind
     command = `head -n 1 #{file_path} && tail -n #{last_line - line_number} #{file_path} | head -n 1`
     CSV.new(command, file_options).first
   end
-
 end
