@@ -13,40 +13,34 @@ module CsvClassMaker::CsvFind
   end
 
   def find_all_by(key_val_pair)
-    rows = search(key_val_pair)
-    output_objects = []
-    rows.each { |row|
-      output_objects << build_instance(row, row[:line_number])
-    }
-    output_objects
+    search(key_val_pair).map { |row| build_instance(row, row[:line_number]) }
   end
 
   def find(line_number)
-    if (first_line..last_line).include? line_number
-      row = front_find(line_number, file.path)
+    row = if (first_line..last_line).include? line_number
+      front_find(line_number, file.path)
     elsif (middle_line..last_line).include? line_number
-      row = back_find(line_number, file.path)
-    else
-      row = nil
+      back_find(line_number, file.path)
     end
-    row.nil? ? nil : build_instance(row, line_number)
+
+    row.nil? ? row : build_instance(row, line_number)
   end
 
   def first
     rewind
-    build_instance file.first, first_line
+    build_instance(file.first, first_line)
   end
 
   def last
     command = `head -n 1 #{file.path} && tail -n 1 #{file.path}`
     last_row = CSV.new(command, file_options).first
-    build_instance last_row, last_line
+    build_instance(last_row, last_line)
   end
 
   def each
     rewind
     (first_line..last_line).each do |line_number|
-      yield find line_number
+      yield find(line_number)
     end
   end
 
@@ -68,29 +62,17 @@ module CsvClassMaker::CsvFind
     @results = file
     @pairs = key_val_pair
 
-    @pairs.each { |pair|
-      @results = dig(pair, @results)
-    }
+    @pairs.each { |pair| @results = dig(pair, @results) }
 
     @results
   end
 
   def dig(hash_pair, rows)
-    @key = hash_pair.first
-    @value = hash_pair.last
-    @accumulator = []
-
-    rows.each { |row|
-      if row[@key] == @value
-        if $. != last_line
-          @accumulator << row.push(line_number: $.) if $. != last_line
-        else
-          @accumulator << row
-        end
+    rows.map do |row|
+      if row[hash_pair.first] == hash_pair.last
+        $. != last_line ? row.push(line_number: $.) : row
       end
-    }
-
-    @accumulator
+    end.reject(&:nil?)
   end
 
   def front_find(line_number, file_path)

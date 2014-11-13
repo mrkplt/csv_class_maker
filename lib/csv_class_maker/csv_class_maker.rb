@@ -5,6 +5,7 @@
 
 module CsvClassMaker
   require 'csv'
+  require 'byebug'
 
   def self.generate_class(class_name, file_name, options = {})
     options.merge!(
@@ -48,12 +49,10 @@ module CsvClassMaker
   private
 
   def self.extract_headers(file_name, options)
-    @csv_headers = []
     csv_file = File.open(file_name,'r')
 
-    CSV.new(csv_file, options).first.each do |headers, values|
-      @csv_headers << headers
+    @csv_headers = CSV.new(csv_file, options).first.map do |headers, values|
+      headers
     end
-    @csv_headers
   end
 end
