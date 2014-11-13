@@ -62,7 +62,7 @@ describe Object do
     end
     it ".each line yields" do
       @output = []
-      People.each{|person| @output << person.first}
+      People.each{ |person| @output << person.first }
       expect(@output).to eq ['Mark', 'Longinus', 'Johnny', 'Charlie']
     end
   end

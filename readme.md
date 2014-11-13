@@ -34,7 +34,7 @@ Yourclass.find_by(header1: 'value', header2: 'value')
 Yourclass.find_all_by(header1: 'value', header2: 'value')
 Yourclass.first
 Yourclass.last
-Yourclass.each {|a| a.method  }
+Yourclass.each { |a| a.method  }
 ```
 
 To Do

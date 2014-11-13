@@ -1,7 +1,7 @@
 module CsvClassMaker::CsvFind
   def all
     rewind
-    file.map {|row| build_instance(row, file.lineno) }
+    file.map { |row| build_instance(row, file.lineno) }
   end
 
   def find_by(key_val_pair)
