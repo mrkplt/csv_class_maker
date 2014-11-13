@@ -1,9 +1,7 @@
 module CsvClassMaker::CsvFind
   def all
     rewind
-    object_array = []
-    file.each {|row| object_array << build_instance(row, file.lineno) }
-    object_array
+    file.map {|row| build_instance(row, file.lineno) }
   end
 
   def find_by(key_val_pair)
@@ -47,7 +45,7 @@ module CsvClassMaker::CsvFind
 
   def build_instance(row, line)
     new_instance = self.new
-    row.each { |key, value| new_instance.send "#{key}=".to_sym, value }
+    row.each { |key, value| new_instance.send("#{key}=".to_sym, value) }
     new_instance.line_number = line
     return new_instance
   end
