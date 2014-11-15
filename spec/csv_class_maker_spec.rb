@@ -28,38 +28,49 @@ describe Object do
     it "responds to .first" do
       (People).should respond_to(:first)
     end
+
     it ".first returns correctly" do
       expect(People.first).to eq @person1
     end
+
     it "responds to .last" do
       (People).should respond_to(:last)
     end
+
     it ".last returns correctly" do
       expect(People.last).to eq @person4
     end
+
     it "responds to .find" do
       (People).should respond_to(:find)
     end
+
     it ".find returns correctly" do
       expect(People.find(3)).to eq @person2
     end
+
     it "responds to .find_by" do
       (People).should respond_to(:find_by)
     end
+
     it ".find_by returns correctly" do
       expect(People.find_by(nickname: 'Pebbles')).to eq @person3
       expect(People.find_by(nickname: 'Pebbles', last: 'Smith')).to eq @person2
     end
+
     it "responds to .find_all_by" do
       (People).should respond_to(:find_all_by)
     end
+
     it ".find_all_by returns correctly" do
       expect(People.find_all_by(nickname: 'Pebbles')).to eq [@person2, @person3]
       expect(People.find_all_by(nickname: 'Pebbles', last: 'Radiation')).to eq [@person3]
     end
+
     it "responds to .each" do
       (People).should respond_to(:each)
     end
+
     it ".each line yields" do
       @output = []
       People.each{ |person| @output << person.first }
@@ -70,9 +81,11 @@ describe Object do
     it "responds to .first as defined in the csv" do
       (People.new).should respond_to(:first)
     end
+
     it "responds to .last as defined in the csv" do
       (People.new).should respond_to(:last)
     end
+
     it "responds to .nickname as defined in the csv" do
       (People.new).should respond_to(:nickname)
     end

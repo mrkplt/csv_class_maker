@@ -17,11 +17,11 @@ module CsvClassMaker
 
       # Class definition for dynamically generated classes.
       require 'csv_class_maker/csv_find'
-      extend CsvFind
+      include CsvFind
 
       def initialize(hash=nil)
         if hash
-          hash.each { |k,v| send "#{k}=".to_sym, v }
+          hash.each { |k,v| send("#{k}=".to_sym, v) }
         end
       end
 
@@ -47,7 +47,7 @@ module CsvClassMaker
 
   private
 
-  def self.extract_headers(file_name, options)
+  def self.extract_headers(file_name, options={})
     csv_file = File.open(file_name,'r')
 
     @csv_headers = CSV.new(csv_file, options).first.map do |headers, values|
