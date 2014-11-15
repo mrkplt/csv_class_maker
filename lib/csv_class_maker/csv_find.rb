@@ -3,7 +3,31 @@ module CsvClassMaker::CsvFind
     base.send :extend, ClassMethods
   end
 
+  attr_accessor :line_number
+
+  def initialize(hash = nil)
+    if hash
+      hash.each { |k,v| send("#{k}=".to_sym, v) }
+    end
+  end
+
   module ClassMethods
+    def csv_file(file_name, options = {})
+      @@file_options = options
+      @@file = CSV.new(File.open(file_name, 'r'), @@file_options)
+      @@first_line = 2
+      @@last_line = `wc -l #{file_name}`.split(' ').first.to_i
+      @@middle_line = (@@last_line/2)+1
+      @line_number = nil
+    end
+
+    def file; return @@file; end
+    def first_line; return @@first_line; end
+    def middle_line; return @@middle_line; end
+    def last_line; return @@last_line; end
+    def file_options; return @@file_options; end
+
+
     def all
       rewind
       file.map { |row| build_instance(row, file.lineno) }
