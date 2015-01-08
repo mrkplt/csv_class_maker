@@ -19,8 +19,12 @@ module CsvClassMaker::CsvFind
       @@last_line = `wc -l #{file_name}`.split(' ').first.to_i
       @@middle_line = (@@last_line/2)+1
       @line_number = nil
+      extract_headers
+      build_setters
+      build_getters
     end
 
+    def headers; return @@headers; end
     def file; return @@file; end
     def first_line; return @@first_line; end
     def middle_line; return @@middle_line; end
@@ -70,8 +74,23 @@ module CsvClassMaker::CsvFind
       end
     end
 
-
     private
+
+    def build_setters
+      puts headers
+    end
+
+    def build_getters
+      puts headers
+    end
+
+    def extract_headers
+      csv_file = File.open(file_name,'r')
+
+      @@headers ||= CSV.new(csv_file, options).first.map do |headers, values|
+        headers
+      end
+    end
 
     def build_instance(row, line)
       new_instance = self.new
