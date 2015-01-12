@@ -5,6 +5,8 @@ CSV Class Maker v1
 
 CSV Class Maker creates classes out of your CSV headers with some pretty simple search functionality you're probably already comfortable with.
 
+Version 1 has a Ruby 2 requirement. Go pre v1 for 1.9.3. Bug fixes accepted for both.
+
 Usage
 --------------
 
