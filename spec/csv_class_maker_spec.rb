@@ -19,10 +19,10 @@ end
 
 describe Object do
   before(:all){
-    @person1 = People.new(first: 'Mark', last: 'Platt', nickname: 'JCool')
-    @person2 = People.new(first: 'Longinus', last: 'Smith', nickname: 'Pebbles')
-    @person3 = People.new(first: 'Johnny', last: 'Radiation', nickname: 'Pebbles')
-    @person4 = People.new(first: 'Charlie', last: 'Mansfield', nickname: 'Sammykins')
+    @person1 = People.new(first: 'Mark', last: 'Platt', nickname: 'JCool', line_number: 2)
+    @person2 = People.new(first: 'Longinus', last: 'Smith', nickname: 'Pebbles', line_number: 3)
+    @person3 = People.new(first: 'Johnny', last: 'Radiation', nickname: 'Pebbles', line_number: 4)
+    @person4 = People.new(first: 'Charlie', last: 'Mansfield', nickname: 'Sammykins', line_number: 5)
   }
 
   context 'class methods' do

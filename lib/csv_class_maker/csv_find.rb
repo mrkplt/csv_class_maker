@@ -12,6 +12,8 @@ module CsvClassMaker::CsvFind
         hash.each { |k,v| send("#{k}=".to_sym, v) }
       end
     end
+
+    private
   end
 
   module ClassMethods
@@ -23,8 +25,7 @@ module CsvClassMaker::CsvFind
       @@middle_line = (@@last_line/2)+1
       @line_number = nil
       extract_headers(file_name, options)
-      build_setters
-      build_getters
+      define_accessors
     end
 
     def headers; return @@headers; end
@@ -34,6 +35,13 @@ module CsvClassMaker::CsvFind
     def last_line; return @@last_line; end
     def file_options; return @@file_options; end
 
+    def define_accessors
+      headers.each do |header|
+        self.send(:attr_accessor, header)
+      end
+
+      # self.send(:attr_accessor, :line_number)
+    end
 
     def all
       rewind
@@ -78,14 +86,6 @@ module CsvClassMaker::CsvFind
     end
 
     private
-
-    def build_setters
-
-    end
-
-    def build_getters
-
-    end
 
     def extract_headers(file_name, options)
       csv_file = File.open(file_name,'r')
