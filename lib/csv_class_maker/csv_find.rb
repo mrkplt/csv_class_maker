@@ -13,7 +13,16 @@ module CsvClassMaker::CsvFind
       end
     end
 
+    def ==(other_instance)
+      instance_variables.map do |instance_variable|
+        self.instance_variable_get(instance_variable) ==
+          other_instance.instance_variable_get(instance_variable)
+      end
+    end
+
     private
+
+    attr_reader :hash
   end
 
   module ClassMethods

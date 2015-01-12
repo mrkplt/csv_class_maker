@@ -1,11 +1,16 @@
+PATH
+  remote: .
+  specs:
+    csv_class_maker (1.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
-    byebug (3.4.2)
+    byebug (3.5.1)
       columnize (~> 0.8)
       debugger-linecache (~> 1.2)
       slop (~> 3.6)
-    columnize (0.8.9)
+    columnize (0.9.0)
     debugger-linecache (1.2.0)
     diff-lcs (1.2.5)
     rspec (2.14.1)
@@ -22,5 +27,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  byebug
-  rspec
+  byebug (~> 3.5.1)
+  csv_class_maker!
+  rspec (~> 2.14.1)

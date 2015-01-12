@@ -1,4 +1,4 @@
-CSV Class Maker
+CSV Class Maker v1
 ========
 
 [![Code Climate](https://codeclimate.com/github/mrkplt/csv_class_maker.png)](https://codeclimate.com/github/mrkplt/csv_class_maker)
@@ -43,4 +43,4 @@ To Do
 
 License
 -------
-CSV Class Maker is Copyright © 2014 Mark Platt, Inc. It is free software, and may be redistributed under the terms specified in the MIT-LICENSE file.
+CSV Class Maker is Copyright © 2015 Mark Platt, Inc. It is free software, and may be redistributed under the terms specified in the MIT-LICENSE file.
