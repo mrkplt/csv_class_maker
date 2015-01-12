@@ -1,13 +1,16 @@
 module CsvClassMaker::CsvFind
   def self.included(base)
     base.send :extend, ClassMethods
+    base.send :prepend, InstanceMethods
   end
 
-  attr_accessor :line_number
+  module InstanceMethods
+    attr_accessor :line_number
 
-  def initialize(hash = nil)
-    if hash
-      hash.each { |k,v| send("#{k}=".to_sym, v) }
+    def initialize(hash = nil)
+      if hash
+        hash.each { |k,v| send("#{k}=".to_sym, v) }
+      end
     end
   end
 
@@ -19,7 +22,7 @@ module CsvClassMaker::CsvFind
       @@last_line = `wc -l #{file_name}`.split(' ').first.to_i
       @@middle_line = (@@last_line/2)+1
       @line_number = nil
-      extract_headers
+      extract_headers(file_name, options)
       build_setters
       build_getters
     end
@@ -84,7 +87,7 @@ module CsvClassMaker::CsvFind
       puts headers
     end
 
-    def extract_headers
+    def extract_headers(file_name, options)
       csv_file = File.open(file_name,'r')
 
       @@headers ||= CSV.new(csv_file, options).first.map do |headers, values|

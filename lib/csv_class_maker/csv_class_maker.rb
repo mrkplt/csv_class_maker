@@ -13,7 +13,7 @@ module CsvClassMaker
       return_headers: false
     )
 
-    Object.const_set(class_name, Class.new()) {
+    Object.const_set(class_name, Class.new do
       # remove building of the struct here. completely self contain method
       # generation into the csv_find module so that you can pull extract headers
       # method out.
@@ -22,6 +22,7 @@ module CsvClassMaker
       include CsvFind
 
       csv_file(file_name, options)
-    }
+    end
+    )
   end
 end

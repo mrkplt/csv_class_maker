@@ -1,4 +1,5 @@
 require './lib/csv_class_maker'
+require 'byebug'
 
 describe CsvClassMaker do
   context 'class methods' do
@@ -18,6 +19,7 @@ end
 
 describe Object do
   before(:all){
+    debugger
     @person1 = People.new(first: 'Mark', last: 'Platt', nickname: 'JCool')
     @person2 = People.new(first: 'Longinus', last: 'Smith', nickname: 'Pebbles')
     @person3 = People.new(first: 'Johnny', last: 'Radiation', nickname: 'Pebbles')
