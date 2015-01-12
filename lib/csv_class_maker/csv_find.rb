@@ -80,11 +80,11 @@ module CsvClassMaker::CsvFind
     private
 
     def build_setters
-      puts headers
+
     end
 
     def build_getters
-      puts headers
+
     end
 
     def extract_headers(file_name, options)
