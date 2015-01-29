@@ -47,7 +47,10 @@ describe Object do
     end
 
     it ".find returns correctly" do
+      expect(People.find(2)).to eq @person1
       expect(People.find(3)).to eq @person2
+      expect(People.find(4)).to eq @person3
+      expect(People.find(5)).to eq @person4
     end
 
     it "responds to .find_by" do

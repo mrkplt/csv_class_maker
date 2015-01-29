@@ -67,7 +67,8 @@ module CsvClassMaker::CsvFind
     end
 
     def find(line_number)
-      row = if (first_line..last_line).include? line_number
+
+      row = if (first_line..middle_line).include? line_number
         front_find(line_number, file.path)
       elsif (middle_line..last_line).include? line_number
         back_find(line_number, file.path)
@@ -137,8 +138,9 @@ module CsvClassMaker::CsvFind
       command = `head -n 1 #{file_path} && head -n #{line_number} #{file_path} | tail -n 1`
       CSV.new(command, file_options).first
     end
+
     def back_find(line_number, file_path)
-      command = `head -n 1 #{file_path} && tail -n #{last_line - line_number} #{file_path} | head -n 1`
+      command = `head -n 1 #{file_path} && tail -n #{(last_line + 1) - line_number} #{file_path} | head -n 1`
       CSV.new(command, file_options).first
     end
   end
