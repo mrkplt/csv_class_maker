@@ -14,10 +14,6 @@ module CsvClassMaker
     )
 
     Object.const_set(class_name, Class.new do
-      # remove building of the struct here. completely self contain method
-      # generation into the csv_find module so that you can pull extract headers
-      # method out.
-
       require 'csv_class_maker/csv_find'
       include CsvFind
 
