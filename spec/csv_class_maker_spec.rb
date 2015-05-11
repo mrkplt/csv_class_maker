@@ -1,5 +1,4 @@
 require './lib/csv_class_maker'
-require 'byebug'
 
 describe CsvClassMaker do
   context 'class methods' do
