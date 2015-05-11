@@ -15,7 +15,7 @@ module CsvClassMaker::CsvFind
 
     def ==(other_instance)
       instance_variables.map do |instance_variable|
-        self.instance_variable_get(instance_variable) ==
+        instance_variable_get(instance_variable) ==
           other_instance.instance_variable_get(instance_variable)
       end
     end
@@ -26,23 +26,20 @@ module CsvClassMaker::CsvFind
   end
 
   module ClassMethods
+
+    attr_reader :headers, :file, :file_options,
+                :first_line, :middle_line, :last_line
+
     def csv_file(file_name, options = {})
       @file_options = options
       @file = CSV.new(File.open(file_name, 'r'), @file_options)
       @first_line = 2
       @last_line = `wc -l #{file_name}`.split(' ').first.to_i
-      @middle_line = (@last_line/2)+1
+      @middle_line = (@last_line/2) + 1
       @line_number = nil
       extract_headers(file_name, options)
       define_accessors
     end
-
-    def headers; return @headers; end
-    def file; return @file; end
-    def first_line; return @first_line; end
-    def middle_line; return @middle_line; end
-    def last_line; return @last_line; end
-    def file_options; return @file_options; end
 
     def define_accessors
       headers.each do |header|
@@ -65,9 +62,9 @@ module CsvClassMaker::CsvFind
     end
 
     def find(line_number)
-      row = if (first_line..middle_line).include? line_number
+      row = if (first_line..middle_line).include?(line_number)
         front_find(line_number, file.path)
-      elsif (middle_line..last_line).include? line_number
+      else
         back_find(line_number, file.path)
       end
 
@@ -88,7 +85,7 @@ module CsvClassMaker::CsvFind
     def each
       rewind
       (first_line..last_line).each do |line_number|
-        yield find(line_number)
+        yield find(line_number) if block_given?
       end
     end
 
@@ -103,10 +100,11 @@ module CsvClassMaker::CsvFind
     end
 
     def build_instance(row, line)
-      new_instance = self.new
+      new_instance = new
       row.each { |key, value| new_instance.send("#{key}=".to_sym, value) }
       new_instance.line_number = line
-      return new_instance
+
+      new_instance
     end
 
     def rewind
@@ -124,11 +122,11 @@ module CsvClassMaker::CsvFind
     end
 
     def dig(hash_pair, rows)
-      rows.map do |row|
+      rows.select do |row|
         if row[hash_pair.first] == hash_pair.last
           $. != last_line ? row.push(line_number: $.) : row
         end
-      end.reject(&:nil?)
+      end
     end
 
     def front_find(line_number, file_path)

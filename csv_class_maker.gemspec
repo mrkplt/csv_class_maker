@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name = %q{csv_class_maker}
-  s.version = '1.0.0'
-  s.date = %q{2015-01-12}
+  s.version = '1.0.3'
+  s.date = %q{2015-05-10}
   s.authors = ['Mark Platt']
   s.email = 'mplatt@mrkplt.com'
   s.description = %q{'csv_class_maker will create a class out of your csv's headers, and provide some methods for finding data in the CSV'}
