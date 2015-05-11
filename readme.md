@@ -1,4 +1,4 @@
-CSV Class Maker v1.0.2
+CSV Class Maker v1.0.3
 ========
 
 [![Code Climate](https://codeclimate.com/github/mrkplt/csv_class_maker.png)](https://codeclimate.com/github/mrkplt/csv_class_maker)
@@ -38,10 +38,6 @@ Yourclass.first
 Yourclass.last
 Yourclass.each { |a| a.method  }
 ```
-
-To Do
----------------
-1) Pass a block into the generate method to allow appending more functionality to the class creation.
 
 License
 -------
