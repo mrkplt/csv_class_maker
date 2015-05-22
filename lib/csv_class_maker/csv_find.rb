@@ -26,6 +26,7 @@ module CsvClassMaker::CsvFind
   end
 
   module ClassMethods
+    include Enumerable
 
     attr_reader :headers, :file, :file_options,
                 :first_line, :middle_line, :last_line
