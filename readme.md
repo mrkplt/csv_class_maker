@@ -1,4 +1,4 @@
-CSV Class Maker v1.0.3
+CSV Class Maker v1.0.4
 ========
 
 [![Code Climate](https://codeclimate.com/github/mrkplt/csv_class_maker.png)](https://codeclimate.com/github/mrkplt/csv_class_maker)
@@ -30,14 +30,15 @@ All methods return an instance of Yourclass or an array of Yourclass.
 
 Methods
 ```
-Yourclass.new()
+Yourclass.new
 Yourclass.find(line_number)
-Yourclass.find_by(header1: 'value', header2: 'value')
-Yourclass.find_all_by(header1: 'value', header2: 'value')
+Yourclass.where(header1: 'value', header2: 'value')
 Yourclass.first
 Yourclass.last
 Yourclass.each { |a| a.method  }
 ```
+
+Plus, as of v1.0.4, the Enumerable module is implemented in all CSV classes!
 
 License
 -------

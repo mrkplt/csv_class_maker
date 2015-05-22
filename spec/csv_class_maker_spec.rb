@@ -52,20 +52,38 @@ describe Object do
       expect(People.find(5)).to eq @person4
     end
 
-    it "responds to .find_by" do
+    it "[DEPRECATED] responds to .find_by" do
       (People).should respond_to(:find_by)
     end
 
-    it ".find_by returns correctly" do
+    it "[DEPRECATED] .find_by returns correctly" do
       expect(People.find_by(nickname: 'Pebbles')).to eq @person3
       expect(People.find_by(nickname: 'Pebbles', last: 'Smith')).to eq @person2
     end
 
-    it "responds to .find_all_by" do
+    it ".find_by returns an nil if there are no results" do
+      expect(People.find_by(nickname: 'Beastmode')).to eq nil
+    end
+
+
+    it "responds to .where" do
+      (People).should respond_to(:where)
+    end
+
+    it ".where returns correctly" do
+      expect(People.where(nickname: 'Pebbles')).to eq [@person2, @person3]
+      expect(People.where(nickname: 'Pebbles', last: 'Radiation')).to eq [@person3]
+    end
+
+    it ".where returns an empty array if there are no results" do
+      expect(People.where(nickname: 'Beastmode')).to eq []
+    end
+
+    it "[DEPRECATED] responds to .find_all_by" do
       (People).should respond_to(:find_all_by)
     end
 
-    it ".find_all_by returns correctly" do
+    it "[DEPRECATED] .find_all_by returns correctly" do
       expect(People.find_all_by(nickname: 'Pebbles')).to eq [@person2, @person3]
       expect(People.find_all_by(nickname: 'Pebbles', last: 'Radiation')).to eq [@person3]
     end

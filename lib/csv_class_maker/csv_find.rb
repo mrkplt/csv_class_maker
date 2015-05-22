@@ -53,13 +53,19 @@ module CsvClassMaker::CsvFind
       file.map { |row| build_instance(row, file.lineno) }
     end
 
+    def where(key_val_pair)
+      search(key_val_pair).map { |row| build_instance(row, row[:line_number]) }
+    end
+
     def find_by(key_val_pair)
+      warn DEPRECATION_MESSAGE
       row = search(key_val_pair).last
-      build_instance(row, row[:line_number])
+      row.nil? ? nil : build_instance(row, row[:line_number])
     end
 
     def find_all_by(key_val_pair)
-      search(key_val_pair).map { |row| build_instance(row, row[:line_number]) }
+      warn DEPRECATION_MESSAGE
+      where(key_val_pair)
     end
 
     def find(line_number)
@@ -91,6 +97,10 @@ module CsvClassMaker::CsvFind
     end
 
     private
+
+    DEPRECATION_MESSAGE =
+      '[DEPRECATION] This method is deprecated and will be removed in v2.' <<
+      'Please user #where.'
 
     def extract_headers(file_name, options)
       csv_file = File.open(file_name,'r')

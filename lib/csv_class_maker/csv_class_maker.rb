@@ -6,6 +6,12 @@
 module CsvClassMaker
   require 'csv'
 
+  VERSION = {
+    major: '1',
+    minor: '0',
+    patch: '4'
+  }.values.join('.')
+
   def self.generate_class(class_name, file_name, options = {})
     options.merge!(
       headers: true,
