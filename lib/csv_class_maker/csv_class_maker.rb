@@ -8,20 +8,13 @@ module CsvClassMaker
 
   VERSION = {
     major: '1',
-    minor: '0',
-    patch: '4'
+    minor: '1',
+    patch: '0'
   }.values.join('.')
 
   def self.generate_class(class_name, file_name, options = {})
-    options.merge!(
-      headers: true,
-      header_converters: :symbol,
-      return_headers: false
-    )
-
     Object.const_set(class_name, Class.new do
       include CsvFind
-
       csv_file(file_name, options)
     end
     )

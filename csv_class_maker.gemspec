@@ -13,7 +13,6 @@ Gem::Specification.new do |s|
   s.test_files = 'spec/csv_class_maker_spec.rb'
   s.files = [
     'lib/csv_class_maker/csv_class_maker.rb',
-    'lib/csv_class_maker/csv_find.rb',
     'lib/csv_class_maker.rb',
   ]
   s.homepage    = 'http://mrkplt.com'
@@ -21,5 +20,4 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency 'csv_find', '~> 0.0.1'
   s.add_development_dependency 'rspec', '~> 2.14.1'
-
 end
