@@ -1,4 +1,4 @@
-CSV Class Maker v1.0.4
+CSV Class Maker v1.1.0
 ========
 
 [![Code Climate](https://codeclimate.com/github/mrkplt/csv_class_maker.png)](https://codeclimate.com/github/mrkplt/csv_class_maker)
