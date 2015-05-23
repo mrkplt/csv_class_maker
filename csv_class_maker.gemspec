@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
   s.homepage    = 'http://mrkplt.com'
   s.require_paths = ['lib']
 
+  s.add_runtime_dependency 'csv_find', '~> 0.0.1'
   s.add_development_dependency 'rspec', '~> 2.14.1'
 
 end

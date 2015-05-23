@@ -3,6 +3,11 @@ PATH
   specs:
     csv_class_maker (1.0.4)
 
+PATH
+  remote: ../csv_find
+  specs:
+    csv_find (0.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -21,4 +26,5 @@ PLATFORMS
 
 DEPENDENCIES
   csv_class_maker!
+  csv_find!
   rspec (~> 2.14.1)

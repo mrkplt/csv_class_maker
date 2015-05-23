@@ -20,7 +20,6 @@ module CsvClassMaker
     )
 
     Object.const_set(class_name, Class.new do
-      require 'csv_class_maker/csv_find'
       include CsvFind
 
       csv_file(file_name, options)
