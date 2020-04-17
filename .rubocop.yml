@@ -1,0 +1,5 @@
+Gemspec/RequiredRubyVersion:
+  Enabled: false
+Layout/LineLength:
+  Exclude:
+    - csv_class_maker.gemspec

@@ -1,11 +1,11 @@
-CSV Class Maker v1.1.0
+CSV Class Maker v2.0.0
 ========
 
 [![Code Climate](https://codeclimate.com/github/mrkplt/csv_class_maker.png)](https://codeclimate.com/github/mrkplt/csv_class_maker)
 
 CSV Class Maker creates classes out of your CSV headers with some pretty simple search functionality you're probably already comfortable with.
 
-Version 1 has a Ruby 2 requirement. Go pre v1 for 1.9.3. Bug fixes accepted for both.
+This gem is really a wrapper around [csv_find](https://github.com/mrkplt/csv_find/) which may suit your needs better.
 
 Usage
 --------------
@@ -42,4 +42,4 @@ Plus, as of v1.0.4, the Enumerable module is implemented in all CSV classes!
 
 License
 -------
-CSV Class Maker is Copyright © 2015 Mark Platt, Inc. It is free software, and may be redistributed under the terms specified in the MIT-LICENSE file.
+CSV Class Maker is Copyright © 2020 Mark Platt, Inc. It is free software, and may be redistributed under the terms specified in the MIT-LICENSE file.
